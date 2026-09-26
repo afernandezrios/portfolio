@@ -1,0 +1,210 @@
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --border: #eaeaea;
+  --accent: #4a7d9c;
+}
+
+[data-theme="dark"] {
+  --bg: #121212;
+  --surface: #1a1a1a;
+  --text: #e0e0e0;
+  --muted: #8f8f8f;
+  --border: #333333;
+  --accent: #7ba7c4;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  margin: 0;
+  font-weight: 600;
+}
+
+a {
+  color: var(--accent);
+}
+
+section {
+  padding-top: 3.5rem;
+}
+
+.section-title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+}
+
+/* Hero */
+
+.hero {
+  padding-top: 4.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  letter-spacing: -0.02em;
+}
+
+.hero .subtitle {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 34rem;
+  margin: 1rem 0 1.75rem;
+}
+
+.hero .social {
+  display: flex;
+  gap: 1rem;
+}
+
+.hero .social a {
+  color: var(--muted);
+  display: flex;
+}
+
+.hero .social a:hover {
+  color: var(--accent);
+}
+
+/* Experience */
+
+.job {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.job:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.job .dates {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding-top: 0.2rem;
+}
+
+.job h3 {
+  font-size: 1rem;
+}
+
+.job .company {
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin: 0.15rem 0 0.6rem;
+}
+
+.job p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Projects */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+}
+
+.card img,
+.card video {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.card h3 {
+  font-size: 1rem;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.6rem 0 1.25rem;
+}
+
+.card .links {
+  margin-top: auto;
+  display: flex;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.card .links a {
+  text-decoration: none;
+}
+
+.card .links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .job {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .hero {
+    padding-top: 3rem;
+  }
+}
