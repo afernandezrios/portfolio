@@ -11,7 +11,8 @@ handles the light/dark theme toggle.
 
 - Node.js `18.20.8`, `^20.3.0`, or `>=22.0.0` — this is the range Astro 5.18 declares and it
   will refuse to run outside it (developed against v24)
-- pnpm 7.1.0 or newer
+- pnpm 10.26.0 or newer — the `allowBuilds` key in `pnpm-workspace.yaml` needs 10.26, and
+  pnpm 11+ ignores the older `onlyBuiltDependencies` spelling
 
 ## Getting started
 
@@ -31,8 +32,20 @@ Markdown content hot-reload in the browser.
 | `pnpm build` | Build the static site into `dist/` |
 | `pnpm preview` | Serve the built `dist/` locally to check the production output |
 
-The CI workflow pins `package-manager: pnpm@latest` on the `withastro/action` step, so the
-runner does not have to guess which manager to use.
+The CI workflow pins `package-manager: pnpm@10` on the `withastro/action` step, so the runner
+uses the same pnpm major as local development rather than whatever `latest` resolves to.
+
+`pnpm-workspace.yaml` exists only to approve dependency build scripts:
+
+```yaml
+allowBuilds:
+  esbuild: true
+  sharp: true
+```
+
+pnpm blocks lifecycle scripts by default and fails a non-interactive install with
+`ERR_PNPM_IGNORED_BUILDS` when it finds unapproved ones. Both packages ship native binaries
+from their install scripts, so they need explicit approval. Removing this file breaks CI.
 
 ## Project structure
 
@@ -52,6 +65,7 @@ src/
   content.config.ts   content collection schemas (Zod)
 public/               static assets, served as-is (images, video)
 .github/workflows/    GitHub Pages deployment
+pnpm-workspace.yaml   dependency build-script approvals
 ```
 
 ## Editing content
