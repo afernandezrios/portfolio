@@ -1,0 +1,67 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL;
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout title={`${project.data.title} — Portfolio`}>
+  <a class="back-link" href={base}>&larr; All projects</a>
+
+  <article class="project-detail">
+    <h1>{project.data.title}</h1>
+    <p class="lede">{project.data.description}</p>
+
+    {
+      project.data.image && (
+        <img
+          class="detail-media"
+          src={base + project.data.image.replace(/^\//, "")}
+          alt={project.data.title}
+        />
+      )
+    }
+    {
+      project.data.video && (
+        <video
+          class="detail-media"
+          src={base + project.data.video.replace(/^\//, "")}
+          autoplay
+          loop
+          muted
+          playsinline
+        />
+      )
+    }
+
+    {
+      project.data.stack && (
+        <ul class="tags">
+          {project.data.stack.map((tech) => (
+            <li class="tag">{tech}</li>
+          ))}
+        </ul>
+      )
+    }
+
+    <div class="links">
+      {project.data.github && <a href={project.data.github}>GitHub</a>}
+      {project.data.demo && <a href={project.data.demo}>Live demo</a>}
+    </div>
+
+    <div class="project-content">
+      <Content />
+    </div>
+  </article>
+</Layout>

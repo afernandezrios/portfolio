@@ -1,6 +1,7 @@
 ---
 title: "Log Aggregator CLI"
 description: "A terminal tool in Rust that streams, filters, and formats logs from multiple sources with sub-millisecond overhead."
+stack: ["Rust", "Tokio", "CLI"]
 github: "https://github.com/yourusername/log-aggregator"
 demo: "https://example.com/log-aggregator"
 ---

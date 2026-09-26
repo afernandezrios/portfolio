@@ -176,6 +176,16 @@ section {
   font-size: 1rem;
 }
 
+.card-link {
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+}
+
+.card-link:hover h3 {
+  color: var(--accent);
+}
+
 .card p {
   color: var(--muted);
   font-size: 0.9rem;
@@ -196,6 +206,160 @@ section {
 
 .card .links a:hover {
   text-decoration: underline;
+}
+
+/* Project detail */
+
+.back-link {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.project-detail h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  letter-spacing: -0.02em;
+  margin-top: 1.5rem;
+}
+
+.project-detail .lede {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin: 0.75rem 0 0;
+}
+
+.detail-media {
+  width: 100%;
+  display: block;
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.2rem 0.55rem;
+}
+
+.project-detail .links {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.project-detail .links a {
+  text-decoration: none;
+}
+
+.project-detail .links a:hover {
+  text-decoration: underline;
+}
+
+/* Rendered markdown body */
+
+.project-content {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.project-content h2 {
+  font-size: 1.1rem;
+  margin: 2rem 0 0.75rem;
+}
+
+.project-content h3 {
+  font-size: 1rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.project-content h2:first-child,
+.project-content h3:first-child {
+  margin-top: 0;
+}
+
+.project-content p {
+  margin: 0 0 1rem;
+}
+
+.project-content ul,
+.project-content ol {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.project-content li {
+  margin-bottom: 0.35rem;
+}
+
+.project-content li::marker {
+  color: var(--muted);
+}
+
+.project-content code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+}
+
+.project-content pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 0 0 1rem;
+}
+
+.project-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.project-content a {
+  text-decoration: underline;
+}
+
+.project-content blockquote {
+  margin: 0 0 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border);
+  color: var(--muted);
+}
+
+.project-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
 }
 
 @media (max-width: 640px) {

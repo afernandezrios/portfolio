@@ -4,6 +4,8 @@ import "../styles/global.css";
 const name = "Your Name";
 const github = "https://github.com/yourusername";
 const linkedin = "https://linkedin.com/in/yourusername";
+
+const { title = `${name} — Backend Engineer` } = Astro.props;
 ---
 
 <!doctype html>
@@ -11,7 +13,7 @@ const linkedin = "https://linkedin.com/in/yourusername";
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{name} — Backend Engineer</title>
+    <title>{title}</title>
     <meta
       name="description"
       content="Portfolio of a backend software engineer: experience, projects, and contact."
@@ -42,8 +44,8 @@ const linkedin = "https://linkedin.com/in/yourusername";
         </label>
 
         <nav class="site-nav">
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
+          <a href={import.meta.env.BASE_URL + "#experience"}>Experience</a>
+          <a href={import.meta.env.BASE_URL + "#projects"}>Projects</a>
         </nav>
 
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">

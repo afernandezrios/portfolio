@@ -45,6 +45,8 @@ src/
     Layout.astro      page shell: head, header, nav, footer, theme script
   pages/
     index.astro       the single page: hero, experience, projects
+    projects/
+      [slug].astro    one detail page per project, generated at build time
   styles/
     global.css        CSS custom properties, both themes, all layout rules
   content.config.ts   content collection schemas (Zod)
@@ -63,26 +65,34 @@ Create a new `.md` file in `src/content/projects/`. The filename becomes the ent
 title: "Distributed Task Queue"
 description: "A lightweight, in-memory task queue built with Go and Redis."
 image: "/assets/projects/task-queue.png"
+stack: ["Go", "Redis", "Docker"]
 github: "https://github.com/yourusername/task-queue"
 demo: "https://example.com"
 ---
-Optional longer body text.
+Everything below the `---` is the detail-page body. Write as much as you want:
+headings, lists, code blocks, links. It is never shown on the card.
 ```
 
 | Field | Required | Notes |
 | --- | --- | --- |
-| `title` | yes | Shown as the card heading |
-| `description` | yes | Shown under the heading |
+| `title` | yes | Card heading and detail page title |
+| `description` | yes | Card body text, and the intro line on the detail page |
 | `image` | no | Path relative to `public/`. Use a leading slash, e.g. `/assets/projects/foo.png` |
 | `video` | no | Same convention. Renders as a looping, muted, autoplaying `<video>` |
-| `github` | no | Renders a "GitHub" link |
-| `demo` | no | Renders a "Demo" link |
+| `stack` | no | List of tech names, rendered as monospace chips on the detail page |
+| `github` | no | Renders a "GitHub" link on both card and detail page |
+| `demo` | no | Renders a "Demo" link on the card, "Live demo" on the detail page |
 
 Put image and video files under `public/assets/projects/` and reference them as
 `/assets/projects/<filename>`. The build prefixes the deployment base path automatically, so
 use the leading slash even though the deployed URL includes the repository name.
 
 Project cards are sorted alphabetically by `title`.
+
+Each project also gets its own page at `/projects/<filename>/`, generated at build time from
+the markdown body. Clicking a card's thumbnail or title opens it. The body is rendered with
+syntax highlighting disabled — code blocks inherit the site's light/dark colors from
+`src/styles/global.css` rather than a fixed editor theme.
 
 ### Adding a job
 

@@ -66,16 +66,18 @@ const projects = (await getCollection("projects")).sort((a, b) =>
       {
         projects.map((project) => (
           <article class="card">
-            {project.data.image && (
-              <img
-                src={base + project.data.image.replace(/^\//, "")}
-                alt={project.data.title}
-              />
-            )}
-            {project.data.video && (
-              <video src={base + project.data.video.replace(/^\//, "")} autoplay loop muted playsinline />
-            )}
-            <h3>{project.data.title}</h3>
+            <a class="card-link" href={base + "projects/" + project.id + "/"}>
+              {project.data.image && (
+                <img
+                  src={base + project.data.image.replace(/^\//, "")}
+                  alt={project.data.title}
+                />
+              )}
+              {project.data.video && (
+                <video src={base + project.data.video.replace(/^\//, "")} autoplay loop muted playsinline />
+              )}
+              <h3>{project.data.title}</h3>
+            </a>
             <p>{project.data.description}</p>
             <div class="links">
               {project.data.github && <a href={project.data.github}>GitHub</a>}
