@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 
-const name = "Andres Fernandez Rios";
+const name = "Andres";
 const github = "https://github.com/afernandezrios";
 const linkedin = "https://www.linkedin.com/in/afernandezrios/";
 const base = import.meta.env.BASE_URL;
@@ -19,8 +19,9 @@ const projects = (await getCollection("projects")).sort((a, b) =>
   <section class="hero">
     <h1>Hi, I'm {name}, a Backend Software Engineer.</h1>
     <p class="subtitle">
-      I build reliable, high-throughput services — mostly Go, PostgreSQL, and
-      event-driven systems. Currently open to new opportunities.
+      I build backend systems with Java, Spring Boot and AWS: REST APIs,
+      event-driven workflows, and services that hold up in production.
+      Currently open to new opportunities.
     </p>
     <div class="social">
       <a href={github} aria-label="GitHub">
@@ -52,8 +53,20 @@ const projects = (await getCollection("projects")).sort((a, b) =>
           </div>
           <div>
             <h3>{job.data.title}</h3>
-            <p class="company">{job.data.company}</p>
+            <p class="company">
+              {job.data.company}
+              {job.data.location && (
+                <span class="location">{job.data.location}</span>
+              )}
+            </p>
             <p>{job.data.description}</p>
+            {job.data.highlights && (
+              <ul>
+                {job.data.highlights.map((highlight) => (
+                  <li>{highlight}</li>
+                ))}
+              </ul>
+            )}
           </div>
         </article>
       ))

@@ -142,6 +142,27 @@ section {
   font-size: 0.95rem;
 }
 
+.job .location {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+}
+
+.job ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.job li {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.job li::marker {
+  color: var(--muted);
+}
+
 /* Projects */
 
 .project-grid {
