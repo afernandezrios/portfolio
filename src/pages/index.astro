@@ -86,9 +86,6 @@ const projects = (await getCollection("projects")).sort((a, b) =>
                   alt={project.data.title}
                 />
               )}
-              {project.data.video && (
-                <video src={base + project.data.video.replace(/^\//, "")} autoplay loop muted playsinline />
-              )}
               <h3>{project.data.title}</h3>
             </a>
             <p>{project.data.description}</p>

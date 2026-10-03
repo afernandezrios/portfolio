@@ -37,6 +37,7 @@ const { Content } = await render(project);
         <video
           class="detail-media"
           src={base + project.data.video.replace(/^\//, "")}
+          controls
           autoplay
           loop
           muted
