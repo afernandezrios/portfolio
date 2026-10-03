@@ -4,8 +4,7 @@ Personal portfolio site for a backend engineer. A static, content-driven site bu
 [Astro](https://astro.build/), styled with plain CSS. All content lives in local Markdown
 files, so adding a project or a job means creating a file — no code changes required.
 
-The site ships zero JavaScript by default; the only script is the small inline snippet that
-handles the light/dark theme toggle.
+The site ships zero JavaScript. The dark theme is applied entirely in CSS.
 
 ## Requirements
 
@@ -55,13 +54,13 @@ src/
     experience/       one Markdown file per role
     projects/         one Markdown file per project
   layouts/
-    Layout.astro      page shell: head, header, nav, footer, theme script
+    Layout.astro      page shell: head, header, nav, footer
   pages/
     index.astro       the single page: hero, experience, projects
     projects/
       [slug].astro    one detail page per project, generated at build time
   styles/
-    global.css        CSS custom properties, both themes, all layout rules
+    global.css        CSS custom properties, all layout rules
   content.config.ts   content collection schemas (Zod)
 public/               static assets, served as-is (images, video)
 .github/workflows/    GitHub Pages deployment
@@ -140,11 +139,16 @@ of two files and must be kept in sync:
 
 **Hero copy.** The `subtitle` paragraph in `src/pages/index.astro`.
 
-**Colors and fonts.** All colors are CSS custom properties in `src/styles/global.css`. Light
-mode lives on `:root`; dark mode overrides are under `[data-theme="dark"]`. The accent color
-is `--accent`. Fonts are Inter (sans) and JetBrains Mono (mono), loaded from Google Fonts in
+**Colors and fonts.** All colors are CSS custom properties on `:root` in
+`src/styles/global.css`. The accent color is `--accent`. Fonts are Space Grotesk (display),
+Inter (body), and JetBrains Mono (code and stack chips), loaded from Google Fonts in
 `src/layouts/Layout.astro`; system fallbacks are already in the font stacks if the CDN is
 unreachable.
+
+**Profile photo.** The hero shows a placeholder monogram block, `.hero-avatar` in
+`src/pages/index.astro`. To use a real photo, replace that `<div>` with
+`<img class="hero-avatar" src={...} alt="..." />` — the CSS already sets `object-fit: cover`
+on the class.
 
 **Site URL and base path.** `site` and `base` in `astro.config.mjs`. `base` must match the
 repository name for project pages (`https://<user>.github.io/<repo>/`). Set `base: "/"` if you
@@ -152,13 +156,9 @@ deploy to a user or organization page or a custom domain.
 
 ## Theme
 
-The site follows the visitor's operating system preference by default. Clicking the toggle in
-the header overrides that choice and stores it in `localStorage` under the key `theme`. The
-override wins on subsequent visits. Clearing site data returns the site to the system
-preference.
-
-The theme is applied by a blocking inline script in `<head>`, before the body renders, so
-there is no flash of the wrong theme on load.
+The site is dark-only. There is no toggle and no light mode; `color-scheme: dark` on `:root`
+tells the browser to render form controls and scrollbars dark, and `html` carries the
+background color so overscroll never flashes white.
 
 ## Deployment
 
