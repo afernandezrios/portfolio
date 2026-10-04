@@ -2,3 +2,9 @@
 node_modules/
 dist/
 .astro/
+
+# video/ is a standalone Remotion project (its own npm project, not part of the
+# pnpm workspace). Build inputs and outputs stay out of the repo.
+video/models/
+video/public/audio/
+video/out/
