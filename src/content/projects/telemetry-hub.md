@@ -1,6 +1,7 @@
 ---
 title: "Telemetry Hub"
 description: "A telemetry ingestion platform scaled from zero to 10,000 requests per second. Every architectural step driven by a measured failure."
+video: "/assets/projects/telemetry-hub.mp4"
 stack: ["Go", "Kafka", "PostgreSQL", "Docker"]
 github: "https://github.com/afernandezrios/telemetry-hub"
 ---
@@ -28,7 +29,7 @@ measured failure and each fix is accepted together with the cost it introduces.
 
 # The system
 
-![alt text](/portfolio/assets/projects/telemetry-arc.svg)
+![telemetry arc](/portfolio/assets/projects/telemetry-arc.svg)
 
 Each metric is a small payload carrying a timestamp, a service, a name and a
 value. The platform answers `202 Accepted` before the metric reaches the

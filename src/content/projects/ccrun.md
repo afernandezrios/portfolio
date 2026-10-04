@@ -118,7 +118,7 @@ left something at the same path.
 The most surprising part of the project: pulling a Docker image is **just HTTP
 and JSON**. There is no proprietary binary protocol.
 
-![alt text](/portfolio/assets/projects/ccrun-image-get.svg)
+![ccrun-get-image](/portfolio/assets/projects/ccrun-image-get.svg)
 
 # Design decision: two processes, one binary
 
