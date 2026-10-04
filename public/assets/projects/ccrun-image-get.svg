@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 860" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bg-glow" cx="50%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#0e1520" />
+      <stop offset="100%" stop-color="#0e1520" />
+    </radialGradient>
+
+    <!-- Header / UI Elements Gradient -->
+    <linearGradient id="header-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e1520" />
+      <stop offset="100%" stop-color="#0e1520" />
+    </linearGradient>
+
+    <!-- Card/Container Fill -->
+    <linearGradient id="panel-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0e1520" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#0e1520" stop-opacity="0.85" />
+    </linearGradient>
+
+    <!-- Lifeline Glow Filters -->
+    <filter id="glow-purple" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#8b5cf6" flood-opacity="0.8"/>
+    </filter>
+    <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#38bdf8" flood-opacity="0.8"/>
+    </filter>
+    <filter id="card-shadow" x="-10%" y="-5%" width="120%" height="115%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-right" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 8 5 L 1 8 Z" fill="#64748b" />
+    </marker>
+    <marker id="arrow-left" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 9 2 L 2 5 L 9 8 Z" fill="#64748b" />
+    </marker>
+    <marker id="arrow-left-red" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 9 2 L 2 5 L 9 8 Z" fill="#f43f5e" />
+    </marker>
+
+    <!-- Pillar Gradients -->
+    <linearGradient id="purple-col" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+    <linearGradient id="blue-col" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Subtle Dot Pattern for Background -->
+    <pattern id="grid-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#ffffff" fill-opacity="0.04" />
+    </pattern>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="100%" height="100%" fill="url(#bg-glow)" />
+  <rect width="100%" height="100%" fill="url(#grid-dots)" />
+
+  <!-- Outer Window Frame -->
+  <g transform="translate(60, 0)" filter="url(#card-shadow)">
+
+    <!-- ================= LIFELINES ================= -->
+    <!-- ccrun Lifeline (X: 180) -->
+    <line x1="180" y1="120" x2="180" y2="800" stroke="#8b5cf6" stroke-width="2.5" stroke-dasharray="6,6" opacity="0.4" />
+    <line x1="180" y1="120" x2="180" y2="800" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="6,6" filter="url(#glow-purple)" />
+
+    <!-- registry Lifeline (X: 700) -->
+    <line x1="700" y1="120" x2="700" y2="800" stroke="#0ea5e9" stroke-width="2.5" stroke-dasharray="6,6" opacity="0.4" />
+    <line x1="700" y1="120" x2="700" y2="800" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="6,6" filter="url(#glow-blue)" />
+
+    <!-- Lifeline Headers -->
+    <!-- ccrun Node -->
+    <g transform="translate(100, 75)">
+      <rect width="160" height="44" rx="10" fill="#1e1833" stroke="#a855f7" stroke-width="1.5" />
+      <rect x="18" y="14" width="16" height="16" rx="4" fill="#8b5cf6" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.2" />
+      <path d="M 22 20 L 25 22 L 22 24" fill="none" stroke="#e0e7ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <text x="44" y="27" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="14" font-weight="600" fill="#f1f5f9">ccrun</text>
+    </g>
+
+    <!-- registry Node -->
+    <g transform="translate(620, 75)">
+      <rect width="160" height="44" rx="10" fill="#0f2438" stroke="#38bdf8" stroke-width="1.5" />
+      <!-- DB / Registry Stack Icon -->
+      <path d="M 20 18 C 20 16 26 15 30 15 C 34 15 40 16 40 18 C 40 20 34 21 30 21 C 26 21 20 20 20 18 Z" fill="none" stroke="#38bdf8" stroke-width="1.3" />
+      <path d="M 20 18 V 26 C 20 28 26 29 30 29 C 34 29 40 28 40 26 V 18" fill="none" stroke="#38bdf8" stroke-width="1.3" />
+      <text x="50" y="27" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="14" font-weight="600" fill="#f1f5f9">registry</text>
+    </g>
+
+    <!-- ================= EVENTS / MESSAGES ================= -->
+
+    <!-- 1. GET Manifests -->
+    <g transform="translate(0, 160)">
+      <line x1="184" y1="0" x2="692" y2="0" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-right)" />
+      <!-- Badge -->
+      <g transform="translate(260, -22)">
+        <rect width="360" height="28" rx="6" fill="#141724" stroke="#2b314a" stroke-width="1" />
+        <text x="12" y="18" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#38bdf8">GET</text>
+        <text x="42" y="18" font-family="'JetBrains Mono', monospace" font-size="12" fill="#cbd5e1">/v2/library/alpine/manifests/latest</text>
+      </g>
+    </g>
+
+    <!-- 2. 401 Unauthorized -->
+    <g transform="translate(0, 230)">
+      <line x1="696" y1="0" x2="188" y2="0" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow-left-red)" opacity="0.8" />
+      <!-- Multi-line Error Badge -->
+      <g transform="translate(250, -27)">
+        <rect width="380" height="42" rx="8" fill="#24121a" stroke="#e11d48" stroke-width="1.2" stroke-opacity="0.6" />
+        <text x="190" y="18" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#fb7185">401 Unauthorized</text>
+        <text x="190" y="32" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#fda4af" opacity="0.75">(the response carries an auth challenge)</text>
+      </g>
+    </g>
+
+    <!-- 3. Exchange Token Challenge -->
+    <g transform="translate(0, 310)">
+      <line x1="184" y1="0" x2="692" y2="0" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-right)" />
+      <g transform="translate(285, -18)">
+        <rect width="310" height="26" rx="6" fill="#141724" stroke="#2b314a" stroke-width="1" />
+        <text x="155" y="17" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">exchange the challenge for a token</text>
+      </g>
+    </g>
+
+    <!-- 4. Token JSON response -->
+    <g transform="translate(0, 375)">
+      <line x1="696" y1="0" x2="188" y2="0" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow-left)" />
+      <g transform="translate(365, -16)">
+        <rect width="150" height="26" rx="6" fill="#161d27" stroke="#0284c7" stroke-width="1" stroke-opacity="0.5" />
+        <text x="75" y="17" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#38bdf8">{"token": "..."}</text>
+      </g>
+    </g>
+
+    <!-- 5. Retry request with Token -->
+    <g transform="translate(0, 440)">
+      <line x1="184" y1="0" x2="692" y2="0" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-right)" />
+      <g transform="translate(290, -18)">
+        <rect width="300" height="26" rx="6" fill="#141724" stroke="#2b314a" stroke-width="1" />
+        <text x="150" y="17" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">retry the request with the token</text>
+      </g>
+    </g>
+
+    <!-- 6. Manifest List Response -->
+    <g transform="translate(0, 505)">
+      <line x1="696" y1="0" x2="188" y2="0" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow-left)" />
+      <g transform="translate(280, -18)">
+        <rect width="320" height="26" rx="6" fill="#141724" stroke="#2b314a" stroke-width="1" />
+        <text x="160" y="17" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" font-weight="500" fill="#a5b4fc">manifest list: one entry per CPU arch</text>
+      </g>
+    </g>
+
+    <!-- 7. Self-processing: Pick entry matching machine -->
+    <g transform="translate(180, 550)">
+      <!-- Self-loop curve -->
+      <path d="M 0 0 C 45 -5 65 15 65 30 C 65 45 45 60 5 56" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-left)" />
+      <g transform="translate(75, 14)">
+        <rect width="250" height="28" rx="6" fill="#1d1730" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.6" />
+        <text x="14" y="18" font-family="-apple-system, sans-serif" font-size="12" font-weight="500" fill="#d8b4fe">⚙ pick entry matching this machine</text>
+      </g>
+    </g>
+
+    <!-- 8. GET Manifest by Digest -->
+    <g transform="translate(0, 635)">
+      <line x1="184" y1="0" x2="692" y2="0" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-right)" />
+      <g transform="translate(310, -18)">
+        <rect width="260" height="26" rx="6" fill="#141724" stroke="#2b314a" stroke-width="1" />
+        <text x="18" y="17" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#38bdf8">GET</text>
+        <text x="48" y="17" font-family="-apple-system, sans-serif" font-size="12" fill="#cbd5e1">the manifest by digest</text>
+      </g>
+    </g>
+
+    <!-- 9. Config + Ordered Layer Digests -->
+    <g transform="translate(0, 690)">
+      <line x1="696" y1="0" x2="188" y2="0" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow-left)" />
+      <g transform="translate(300, -18)">
+        <rect width="280" height="26" rx="6" fill="#141724" stroke="#2b314a" stroke-width="1" />
+        <text x="140" y="17" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" font-weight="500" fill="#93c5fd">config + ordered layer digests</text>
+      </g>
+    </g>
+
+    <!-- 10. GET Each Layer Blob -->
+    <g transform="translate(0, 740)">
+      <line x1="184" y1="0" x2="692" y2="0" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-right)" />
+      <g transform="translate(325, -18)">
+        <rect width="230" height="26" rx="6" fill="#141724" stroke="#2b314a" stroke-width="1" />
+        <text x="18" y="17" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#38bdf8">GET</text>
+        <text x="48" y="17" font-family="-apple-system, sans-serif" font-size="12" fill="#cbd5e1">each layer blob</text>
+      </g>
+    </g>
+
+    <!-- 11. 307 Redirect -->
+    <g transform="translate(0, 785)">
+      <!-- Diverted or finished endpoint note -->
+      <line x1="696" y1="-5" x2="188" y2="-5" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow-left)" />
+      <g transform="translate(285, -23)">
+        <rect width="310" height="28" rx="6" fill="#0c2333" stroke="#0284c7" stroke-width="1.2" stroke-opacity="0.7" />
+        <text x="14" y="18" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#38bdf8">307</text>
+        <text x="42" y="18" font-family="-apple-system, sans-serif" font-size="12" fill="#7dd3fc">redirect to a CDN (followed)</text>
+      </g>
+    </g>
+
+  </g>
+</svg>
