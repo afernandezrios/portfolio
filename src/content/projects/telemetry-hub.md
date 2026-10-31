@@ -1,6 +1,7 @@
 ---
 title: "Telemetry Hub"
 description: "A telemetry ingestion platform scaled from zero to 10,000 requests per second. Every architectural step driven by a measured failure."
+order: 1
 video: "/assets/projects/telemetry-hub.mp4"
 stack: ["Go", "Kafka", "PostgreSQL", "Docker"]
 github: "https://github.com/afernandezrios/telemetry-hub"

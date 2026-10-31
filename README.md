@@ -56,7 +56,7 @@ src/
   layouts/
     Layout.astro      page shell: head, header, nav, footer
   pages/
-    index.astro       the single page: hero, experience, projects
+    index.astro       the single page: hero, projects, experience
     projects/
       [slug].astro    one detail page per project, generated at build time
   styles/
@@ -90,6 +90,7 @@ headings, lists, code blocks, links. It is never shown on the card.
 | --- | --- | --- |
 | `title` | yes | Card heading and detail page title |
 | `description` | yes | Card body text, and the intro line on the detail page |
+| `order` | no | Lower numbers appear first; unnumbered projects are sorted alphabetically after them |
 | `image` | no | Path relative to `public/`. Use a leading slash, e.g. `/assets/projects/foo.png` |
 | `video` | no | Same convention. Renders as a looping, muted, autoplaying `<video>` |
 | `stack` | no | List of tech names, rendered as monospace chips on the detail page |
@@ -100,7 +101,9 @@ Put image and video files under `public/assets/projects/` and reference them as
 `/assets/projects/<filename>`. The build prefixes the deployment base path automatically, so
 use the leading slash even though the deployed URL includes the repository name.
 
-Project cards are sorted alphabetically by `title`.
+Project cards are sorted by `order`, then alphabetically by `title` for projects without an
+`order`. The two flagship projects (Telemetry Hub and ccrun) use `order: 1` and `order: 2`
+to appear first.
 
 Each project also gets its own page at `/projects/<filename>/`, generated at build time from
 the markdown body. Clicking a card's thumbnail or title opens it. The body is rendered with
