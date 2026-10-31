@@ -17,11 +17,41 @@ const { Content } = await render(project);
 ---
 
 <Layout title={`${project.data.title} — Portfolio`}>
-  <a class="back-link" href={base}>&larr; All projects</a>
-
   <article class="project-detail">
-    <h1>{project.data.title}</h1>
-    <p class="lede">{project.data.description}</p>
+    <a class="back-link" href={base}>&larr; All projects</a>
+
+    <header class="project-hero">
+      <div class="kicker">Project</div>
+      <h1>{project.data.title}</h1>
+      <p class="lede">{project.data.description}</p>
+
+      {
+        project.data.stack && (
+          <ul class="tags" aria-label="Stack">
+            {project.data.stack.map((tech) => (
+              <li class="tag">{tech}</li>
+            ))}
+          </ul>
+        )
+      }
+
+      {
+        (project.data.github || project.data.demo) && (
+          <div class="actions">
+            {project.data.github && (
+              <a class="button" href={project.data.github}>
+                GitHub ↗
+              </a>
+            )}
+            {project.data.demo && (
+              <a class="button secondary" href={project.data.demo}>
+                Live demo ↗
+              </a>
+            )}
+          </div>
+        )
+      }
+    </header>
 
     {
       project.data.image && (
@@ -45,21 +75,6 @@ const { Content } = await render(project);
         />
       )
     }
-
-    {
-      project.data.stack && (
-        <ul class="tags">
-          {project.data.stack.map((tech) => (
-            <li class="tag">{tech}</li>
-          ))}
-        </ul>
-      )
-    }
-
-    <div class="links">
-      {project.data.github && <a href={project.data.github}>GitHub</a>}
-      {project.data.demo && <a href={project.data.demo}>Live demo</a>}
-    </div>
 
     <div class="project-content">
       <Content />

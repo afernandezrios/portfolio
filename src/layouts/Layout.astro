@@ -4,8 +4,10 @@ import "../styles/global.css";
 const name = "Andres";
 const github = "https://github.com/afernandezrios";
 const linkedin = "https://www.linkedin.com/in/afernandezrios/";
+const email = "andresfdezrios@gmail.com";
+const base = import.meta.env.BASE_URL;
 
-const { title = `${name} — Backend Engineer` } = Astro.props;
+const { title = `${name} — Personal Projects` } = Astro.props;
 ---
 
 <!doctype html>
@@ -22,180 +24,127 @@ const { title = `${name} — Backend Engineer` } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap"
     />
   </head>
 
   <body>
-    <header class="site-header">
-      <div class="wrap header-inner">
-        <a class="monogram" href={import.meta.env.BASE_URL}>{name}</a>
+    <div class="page">
+      <header>
+        <a class="brand" href={base}>{name}</a>
 
-        <input class="nav-toggle" id="nav-toggle" type="checkbox" />
-        <label class="nav-toggle-label" for="nav-toggle" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </label>
-
-        <nav class="site-nav">
-          <a href={import.meta.env.BASE_URL + "#experience"}>Experience</a>
-          <a href={import.meta.env.BASE_URL + "#projects"}>Projects</a>
-        </nav>
-      </div>
-    </header>
-
-    <main class="wrap">
-      <slot />
-    </main>
-
-    <footer class="site-footer">
-      <div class="wrap footer-inner">
-        <p>&copy; {new Date().getFullYear()} {name}</p>
-        <div class="social">
-          <a href={github} aria-label="GitHub">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <nav class="nav" aria-label="Main">
+          <a href={base + "#about"}>About</a>
+          <a href={base + "#experience"}>Experience</a>
+          <a href={base + "#projects"}>Projects</a>
+          <a href={base + "#interests"}>Interests</a>
+          <a href={base + "#contact"}>Contact</a>
+          <a class="nav-github" href={github} aria-label="GitHub">
+            <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
               <path
                 d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"
                 fill="currentColor"
               />
             </svg>
           </a>
-          <a href={linkedin} aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-              <path
-                d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21H9z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer>
+        <span>{name}</span>
+        <div class="social">
+          <a href={github}>GitHub</a>
+          <a href={linkedin}>LinkedIn</a>
+          <a href={`mailto:${email}`}>Email</a>
+          <a href="#">Back to top ↑</a>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
   </body>
 </html>
 
 <style>
-  .site-header {
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    background: rgba(14, 21, 32, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 10;
-  }
-
-  .header-inner {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    height: 4rem;
-  }
-
-  .monogram {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.05rem;
-    letter-spacing: -0.01em;
-    color: var(--text);
-    text-decoration: none;
-    margin-right: auto;
-    white-space: nowrap;
-    transition: color 0.2s ease;
-  }
-
-  .monogram:hover {
-    color: var(--accent);
-  }
-
-  .site-nav {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .site-nav a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.9rem;
-  }
-
-  .site-nav a:hover {
-    color: var(--accent);
-  }
-
-  .nav-toggle,
-  .nav-toggle-label {
-    display: none;
-  }
-
-  .site-footer {
-    border-top: 1px solid var(--border);
-    margin-top: 5rem;
-  }
-
-  .footer-inner {
+  header {
+    height: 76px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 2rem 0;
-    flex-wrap: wrap;
+    border-bottom: 1px solid var(--line);
+    gap: 20px;
   }
 
-  .footer-inner p {
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin: 0;
+  .brand {
+    font-size: 15px;
+    font-weight: 750;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+
+  .brand:hover {
+    color: var(--blue);
+  }
+
+  .nav {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    font-size: 13px;
+    color: #43506b;
+  }
+
+  .nav a:hover {
+    color: var(--blue);
+  }
+
+  .nav-github {
+    display: flex;
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 22px 0 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    color: #6b7890;
+    font-size: 12px;
   }
 
   .social {
     display: flex;
-    gap: 1rem;
-  }
-
-  .social a {
-    color: var(--muted);
-    display: flex;
+    gap: 20px;
+    color: #34425d;
   }
 
   .social a:hover {
-    color: var(--accent);
+    color: var(--blue);
   }
 
-  @media (max-width: 640px) {
-    .nav-toggle-label {
-      display: flex;
+  @media (max-width: 800px) {
+    .nav {
+      gap: 13px;
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    header {
+      height: auto;
+      padding: 18px 0;
+      align-items: flex-start;
       flex-direction: column;
-      justify-content: center;
-      gap: 4px;
-      cursor: pointer;
     }
 
-    .nav-toggle-label span {
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: var(--muted);
+    .nav {
+      flex-wrap: wrap;
     }
 
-    .site-nav {
-      display: none;
-      position: absolute;
-      top: 4rem;
-      left: 0;
-      right: 0;
+    footer {
       flex-direction: column;
-      gap: 0;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      padding: 0.5rem 1.5rem 1rem;
-    }
-
-    .nav-toggle:checked ~ .site-nav {
-      display: flex;
-    }
-
-    .site-nav a {
-      padding: 0.75rem 0;
     }
   }
 </style>
