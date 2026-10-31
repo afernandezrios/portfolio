@@ -172,7 +172,21 @@ h3 {
   transform: translateX(-50%);
   display: block;
   z-index: 1;
-  filter: drop-shadow(0 16px 26px rgba(27, 55, 97, 0.18));
+  filter: drop-shadow(0 12px 20px rgba(27, 55, 97, 0.12));
+  -webkit-mask-image: radial-gradient(
+      ellipse 72% 85% at 50% 36%,
+      #000 50%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #000 60%, transparent 97%);
+  mask-image: radial-gradient(
+      ellipse 72% 85% at 50% 36%,
+      #000 50%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #000 60%, transparent 97%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
 .float {
