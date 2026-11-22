@@ -1,8 +1,8 @@
 ---
-title: "My Own Database"
-description: "A SQL database engine built from scratch in Go — an educational deep dive into what happens between a query and its rows."
+title: "LearningDB"
+description: "A SQL database engine built from scratch in Go. An educational deep dive into what happens between a query and its rows."
 stack: ["Go"]
-github: "https://github.com/afernandezrios/my-own-database"
+github: "https://github.com/afernandezrios/learning-db"
 ---
 
 A database looks like a black box: you type text, rows come back. This project
@@ -74,45 +74,49 @@ The grammar covered today is `SELECT` and `INSERT`. Errors are part of the
 interface: each failure reports specifically what is missing, the way a real
 database points at where the query broke.
 
-# The execution engine (next)
+# The execution engine
 
-The missing stage. Planned: an in-memory catalogue of tables holding rows and an
-executor that walks the tree and performs the operation: create a table, append a
-row, scan and return rows.
+The engine receives the AST and dispatches it to the backend, which validates 
+the requested operation against the table schema and performs it.
 
-Once it exists, the pipeline is complete end to end and the interesting error
-cases become reachable: inserting into a table that does not exist, inserting a row
-with the wrong number of values, selecting a column that is not there. All of that
-is validation the engine performs. The parser only knows grammar, never schema.
+Tables and rows live in memory. The current implementation supports creating tables, 
+inserting rows and selecting data, including filtering records with `WHERE` conditions.
+
+The important part is that parsing and execution remain separate. The parser knows 
+whether a statement is grammatically valid. The backend knows whether the requested 
+operation makes sense for the actual data.
+
+# Indexing
+
+A database that scans every row to find a single record does not scale very well. This 
+is where indexes come in.
+
+Tables created with an `id` column automatically get an in-memory B-tree index. The 
+backend maintains it on every insert and uses it for equality lookups such as `WHERE id = 42`.
+
+Instead of checking every row, the engine can use the tree to navigate directly to the 
+requested record. Other filters still fall back to a sequential scan.
+
+I also added a load test to compare both approaches. It runs real SQL statements through the 
+complete pipeline and measures inserts and point queries at different table sizes.
+
+At 100,000 rows, an indexed lookup takes around 2.8 µs on my machine, compared with 1.08 ms 
+without the index (~390 times faster).
+
+There is a trade-off, of course: maintaining the index adds some overhead to inserts. The 
+interesting part is seeing how that small write cost changes the behaviour of reads as the 
+table grows.
 
 # Where it stands
 
-| Stage | Status |
-|---|---|
-| Interactive shell | Working — reads, dispatches, exits |
-| Lexer | Working for keywords, identifiers, numbers, strings, punctuation |
-| Parser | `SELECT` and `INSERT` grammar, with per-clause errors |
-| Engine | Not started |
-| Persistence | Not started |
-| Filtering (`WHERE`) | Not started |
-
-The project is therefore a working *front end* for a database: it understands
-queries but cannot yet answer them. The shell prints the parsed statement instead
-of executing it.
+The project currently has a working SQL pipeline, an in-memory backend and an integrated 
+B-tree index. It is still a deliberately small database: no persistence, transactions or 
+concurrent access yet.
 
 # The road ahead
 
-The order matters, because each step forces a new concept:
+The next steps are to introduce persistence through a write-ahead log, add transaction 
+support and explore how concurrent operations interact with the database.
 
-1. **The in-memory backend**: tables and rows. Introduces schema and storage.
-2. **The execution engine**: walking the tree and doing what it says. Introduces
-   the separation between parsing and doing.
-3. **Filtering (`WHERE`)**: extends the grammar and the executor. The parser must
-   carry a comparison, not just names.
-4. **Persistence**: the idea that the engine's job includes moving data to and
-   from bytes on disk.
-5. **Indexing with a B-tree**: why databases are fast. Data structures that make
-   lookups sublinear and the trade-off between read speed and write cost.
-
-Beyond that lie the questions real engines spend most of their code on:
-transactions, concurrency, on-disk layout, crash recovery, and query planning.
+Beyond that lie the questions real engines spend most of their code on: page storage, 
+buffer pools, crash recovery and query planning.
